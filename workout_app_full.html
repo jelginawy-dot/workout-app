@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Workout App — Donker Thema</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    :root{
+      --bg:#0b0f13; --card:#0f1720; --muted:#9aa5b1; --accent:#6ee7b7; --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071018 0%, #05131a 100%);color:#e6eef3;min-height:100vh}
+    .app{max-width:780px;margin:0 auto;padding:18px}header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#04233a,#063645);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(5,50,80,0.6)}
+    .logo b{font-size:18px;color:var(--accent)}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    .tabs{display:flex;gap:8px;margin:12px 0}
+    .tab{flex:1;padding:10px 12px;border-radius:10px;background:var(--glass);text-align:center;font-weight:600;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .tab.active{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:var(--accent);box-shadow:0 6px 24px rgba(6,110,120,0.08)}
+
+    .card{background:linear-gradient(180deg,var(--card),#0b1116);border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 6px 20px rgba(2,10,14,0.6)}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px 8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03);vertical-align:top}
+    th{color:var(--muted);font-size:12px}
+    td small{color:var(--muted);display:block;margin-top:6px;font-size:12px}
+
+    .exercise{display:flex;gap:12px;align-items:flex-start}
+    .ex-img{width:94px;height:70px;border-radius:8px;background:var(--glass-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.02)}
+    .ex-title{font-weight:700;margin:0}
+    .ex-desc{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .footer{color:var(--muted);font-size:13px;margin-top:8px;text-align:center}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#0e5a5a,#1a8f7f);color:#031218;text-decoration:none;font-weight:700}
+
+    @media(min-width:720px){.ex-img{width:120px;height:90px}}
+    .hint{font-size:12px;color:var(--muted);margin-top:6px}
+    ul.bul{margin:8px 0 0 16px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo"><b>V</b></div>
+      <div>
+        <h1>Workout — Donker Thema</h1>
+        <p class="lead">Kies Gym Dag A, Gym Dag B of Thuis. Tik op een oefening voor uitleg & illustratie.</p>
+      </div>
+    </header>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-target="gymA">Gym Dag A</button>
+      <button class="tab" data-target="gymB">Gym Dag B</button>
+      <button class="tab" data-target="home">Thuis</button>
+    </div>
+
+    <!-- Hier kan je verder de rest van de workout content toevoegen -->
+    <div id="gymA" class="panel">
+      <div class="card">
+        <h3>Warming-up & Stretch</h3>
+        <p class="hint">5–8 min warm-up. Doe dit serieus — voorkomt blessures en verbetert lifts.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        panels.forEach(panel => panel.style.display = 'none');
+        document.getElementById(tab.dataset.target).style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>
